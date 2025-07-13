@@ -1,0 +1,338 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "routing": {
+    "rules": [
+      {
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "BLOCK",
+        "type": "field"
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "tag": "VLESS XHTTP REALITY",
+      "listen": "0.0.0.0",
+      "port": 2096,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "xhttpSettings": {
+          "mode": "auto"
+        },
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "www.journalofbigdata.springeropen.com:443",
+          "xver": 0,
+          "serverNames": [
+            "journalofbigdata.springeropen.com",
+            "www.journalofbigdata.springeropen.com"
+          ],
+          "privateKey": "uP815he0npL3kdfOmoUDcYftmRxmXWOSGDn-2iyWcig",
+          "SpiderX": "/",
+          "shortIds": [
+            "08a9592deb73ddf0"
+          ]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "VMESS TCP Header NoTLS",
+      "listen": "0.0.0.0",
+      "port": 2050,
+      "protocol": "vmess",
+      "settings": {
+        "clients": []
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {
+          "header": {
+            "type": "http",
+            "request": {
+              "method": "GET",
+              "path": [
+                "/"
+              ],
+              "headers": {
+                "Host": [
+                  "iranhost.com"
+                ]
+              }
+            },
+            "response": {}
+          }
+        },
+        "security": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "VLESS TCP Header NoTLS",
+      "listen": "0.0.0.0",
+      "port": 2020,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none",
+        "tcpSettings": {
+          "header": {
+            "type": "http",
+            "request": {
+              "method": "GET",
+              "path": [
+                "/"
+              ],
+              "headers": {
+                "Host": [
+                  "iranhost.com"
+                ]
+              }
+            },
+            "response": {}
+          }
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "VLESS XHTTP NoTLS",
+      "listen": "0.0.0.0",
+      "port": 3030,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "xhttpSettings": {
+          "mode": "auto"
+        },
+        "security": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "VLESS HTTPUPGRADE NoTLS",
+      "listen": "0.0.0.0",
+      "port": 4040,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "httpupgrade",
+        "httpupgradeSettings": {
+          "path": "/",
+          "host": ""
+        },
+        "security": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "VLESS SplitHTTP NoTLS",
+      "listen": "0.0.0.0",
+      "port": 5050,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "splithttp",
+        "splithttpSettings": {
+          "host": "",
+          "path": "/",
+          "maxUploadSize": 1000000,
+          "maxConcurrentUploads": 10
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "VLESS GRPC NOTLS",
+      "listen": "0.0.0.0",
+      "port": 8080,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "vless"
+        },
+        "security": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "vless ws",
+      "listen": "0.0.0.0",
+      "port": 2096,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "generate-a-new-uuid",
+            "flow": ""
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/your-cdn-path"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    },
+    {
+      "tag": "VLESS XHTTP NoTLS",
+      "listen": "0.0.0.0",
+      "port": 2060,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "xhttpSettings": {
+          "mode": "auto"
+        },
+        "security": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+{
+    "tag": "vless xHTTP notls",
+    "listen": "0.0.0.0",
+    "port": 2060,
+    "protocol": "vless",
+    "settings": {
+        "clients": [],
+        "decryption": "none",
+        "fallbacks": []
+    },
+    "streamSettings": {
+        "network": "xhttp",
+        "security": "none",
+        "externalProxy": [],
+        "xhttpSettings": {
+            "path": "/",
+            "host": "",
+            "headers": {},
+            "scMaxBufferedPosts": 30,
+            "scMaxEachPostBytes": "1000000",
+            "noSSEHeader": false,
+            "xPaddingBytes": "100-1000",
+            "mode": "auto"
+        }
+    },
+    "sniffing": {
+        "enabled": false,
+        "destOverride": [
+            "http",
+            "tls",
+            "quic",
+            "fakedns"
+        ],
+        "metadataOnly": false,
+        "routeOnly": false
+    }
+}
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "DIRECT"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "BLOCK"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+hiddify_bot/
+├── main.py              # فایل اصلی
+├── config.py            # تنظیمات
+├── database.py          # مدیریت دیتابیس
+├── api_handler.py       # API کال‌ها
+├── handlers.py          # handler های تلگرام  
+├── utils.py             # توابع کمکی
+├── menu.py              # منوها
+├── scheduler.py         # کارهای زمان‌بندی شده
+└── requirements.txt     # کتابخانه‌ها
