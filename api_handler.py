@@ -70,7 +70,7 @@ class HiddifyAPIHandler:
             current_usage = safe_float(raw.get("current_usage_GB", 0))
             return {
                 "name": raw.get("name") or "کاربر ناشناس",
-                "uuid": raw.get("uuid", ""),
+                "uuid": raw.get("uuid", "").lower(),
                 "is_active": bool(raw.get("is_active", raw.get("enable", False))),
                 "last_online": self._parse_api_datetime(raw.get("last_online")),
                 "usage_limit_GB": usage_limit,

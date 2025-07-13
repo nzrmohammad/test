@@ -115,12 +115,22 @@ def fmt_online_users_list(users: list, page: int) -> str:
         panel_name_raw = user.get('name', 'کاربر ناشناس')
         bot_user_info = uuid_to_bot_user.get(user.get('uuid'))
 
+        # --- شروع تغییرات ---
+        name_str = escape_markdown(panel_name_raw)  # حالت پیش‌فرض اگر کاربر در ربات نباشد
+
         if bot_user_info and bot_user_info.get('user_id'):
             user_id = bot_user_info['user_id']
-            # FIX: Do NOT escape the text inside a markdown link.
-            name_str = f"[{panel_name_raw}](tg://user?id={user_id})"
-        else:
-            name_str = escape_markdown(panel_name_raw)
+            username = bot_user_info.get('username')
+            
+            # بخش لینک: نام کاربر پنل، بدون escape شدن
+            link_part = f"[{panel_name_raw}](tg://user?id={user_id})"
+            
+            # بخش نام کاربری: این بخش escape می‌شود تا با مارک‌داون تداخل نکند
+            username_part = escape_markdown(f" (@{username})") if username else ""
+            
+            # ترکیب دو بخش برای ساخت خروجی نهایی
+            name_str = f"{link_part}{username_part}"
+        # --- پایان تغییرات ---
 
         daily_usage_output = escape_markdown(format_daily_usage(user.get('daily_usage_GB', 0)))
         expire_days = user.get("expire")
@@ -128,6 +138,7 @@ def fmt_online_users_list(users: list, page: int) -> str:
         if expire_days is not None:
             expire_text = f"{expire_days} Days" if expire_days >= 0 else "Expired"
         expire_output = escape_markdown(expire_text)
+        
         line = f"{name_str} \\| {daily_usage_output} \\| {expire_output}"
         user_lines.append(line)
 
